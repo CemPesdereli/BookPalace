@@ -19,6 +19,7 @@ public class ProductConverter {
                 .amount(request.getAmount())
                 .description(request.getDescription())
                 .publisher(publisher)
+                .category(request.getCategory())
                 .build();
     }
 
@@ -28,6 +29,7 @@ public class ProductConverter {
                 .name(product.getName())
                 .description(product.getDescription())
                 .publisherName(product.getPublisher().getName())
+                .category(product.getCategory())
                 .build();
     }
 

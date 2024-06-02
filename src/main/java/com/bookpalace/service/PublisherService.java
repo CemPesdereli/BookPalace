@@ -1,6 +1,8 @@
 package com.bookpalace.service;
 
+import com.bookpalace.converter.ProductConverter;
 import com.bookpalace.converter.PublisherConverter;
+import com.bookpalace.dto.response.PublisherResponse;
 import com.bookpalace.repository.PublisherRepository;
 import com.bookpalace.dto.request.PublisherSaveRequest;
 import com.bookpalace.model.Publisher;
@@ -18,21 +20,22 @@ public class PublisherService {
 
     private final PublisherRepository publisherRepository;
 
-    public void save(PublisherSaveRequest request) {
+    public PublisherResponse save(PublisherSaveRequest request) {
 
         Publisher publisher = PublisherConverter.toPublisher(request);
 
         publisherRepository.save(publisher);
 
         log.info("publisher saved. {}", publisher.toString());
+        return PublisherConverter.toResponse(publisher);
     }
 
-    public List<Publisher> getAllPublishers() {
-        return publisherRepository.findAll();
+    public List<PublisherResponse> getAllPublishers() {
+        return PublisherConverter.toResponse(publisherRepository.findAll());
     }
 
     public Optional<Publisher> getByName(String publisherName) {
-        return getAllPublishers().stream()
+        return publisherRepository.findAll().stream()
                 .filter(publisher -> publisher.getName().equals(publisherName))
                 .findFirst();
     }

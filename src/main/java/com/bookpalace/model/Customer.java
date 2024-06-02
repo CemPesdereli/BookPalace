@@ -4,6 +4,7 @@ package com.bookpalace.model;
 import com.bookpalace.model.enums.AccountType;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -19,7 +20,8 @@ public class Customer {
     private String password;
     private Integer credit;
     private String phoneNumber;
-    private Set<Address> addresses;
+    private List<Order> orderList;
+    private Address address;
     private Boolean isActive;
     private AccountType accountType;
 

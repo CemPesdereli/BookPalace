@@ -13,7 +13,8 @@ import java.time.LocalDate;
 public class Publisher {
 
     private String name;
-    private LocalDate creatDate;
+    private LocalDate createDate;
+    private int id;
     //private List<Book> bookList; //model olarak bunu yapmadık.
 
 }

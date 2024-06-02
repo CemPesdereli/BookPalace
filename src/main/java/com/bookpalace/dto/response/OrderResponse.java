@@ -1,5 +1,7 @@
-package com.bookpalace.model;
+package com.bookpalace.dto.response;
 
+import com.bookpalace.model.Product;
+import com.bookpalace.model.Receipt;
 import com.bookpalace.model.enums.OrderStatus;
 import lombok.*;
 
@@ -10,14 +12,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-public class Order {
+public class OrderResponse {
 
     private LocalDateTime createDate;
     private List<Product> productList;
     private String orderCode; //-ordercode generate
     private OrderStatus orderStatus;
     private Receipt receipt;
-
 }

@@ -13,4 +13,5 @@ public class PublisherSaveRequest {
     private String name;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createDate;
+    private int id;
 }

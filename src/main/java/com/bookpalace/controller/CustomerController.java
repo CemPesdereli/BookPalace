@@ -1,6 +1,9 @@
 package com.bookpalace.controller;
 
+import com.bookpalace.dto.request.CustomerChangeAccountTypeRequest;
 import com.bookpalace.dto.request.CustomerSaveRequest;
+import com.bookpalace.dto.request.CustomerUpdateRequest;
+import com.bookpalace.dto.response.CustomerResponse;
 import com.bookpalace.dto.response.GenericResponse;
 import com.bookpalace.model.Customer;
 import com.bookpalace.service.CustomerService;
@@ -17,27 +20,43 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping
-    public void save(@RequestBody CustomerSaveRequest request) {
-        customerService.save(request);
+    public GenericResponse<CustomerResponse> save(@RequestBody CustomerSaveRequest request) {
+        //customerService.save(request);
+      return GenericResponse.success(customerService.save(request));
     }
 
     @GetMapping
-    public List<Customer> getAll() {
-        return customerService.getCustomerList();
+    public GenericResponse<List<CustomerResponse>> getAll() {
+
+        return GenericResponse.success(customerService.getCustomerList());
+
     }
 
     @GetMapping("/{id}")
-    public GenericResponse<Customer> getById(@PathVariable Long id) {
+    public GenericResponse<CustomerResponse> getById(@PathVariable Long id) {
 
-        Customer customer = customerService.getById(id);
+        CustomerResponse customerResponse = customerService.getById(id);
 
-        return GenericResponse.success(customer);
+        return GenericResponse.success(customerResponse);
     }
 
     @GetMapping("/email/{email}")
-    public GenericResponse<Customer> getByEmail(@PathVariable String email) {
-        Customer customer = customerService.getByEmail(email);
-        return GenericResponse.success(customer);
+    public GenericResponse<CustomerResponse> getByEmail(@PathVariable String email) {
+        CustomerResponse customerResponse = customerService.getByEmail(email);
+        return GenericResponse.success(customerResponse);
+    }
+
+    @PutMapping
+    public GenericResponse<CustomerResponse> updateCustomer(@RequestBody CustomerUpdateRequest request) {
+
+        return GenericResponse.success(customerService.update(request));
+
+
+    }
+    @PostMapping("/changeAcoountType")
+    public GenericResponse<CustomerResponse> changeAccountType(@RequestBody CustomerChangeAccountTypeRequest request) {
+        //customerService.save(request);
+        return GenericResponse.success(customerService.changeAccountTypeByCredit(request));
     }
 
 }
